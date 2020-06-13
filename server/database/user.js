@@ -1,7 +1,12 @@
 const knex = require('./connection');
 
 module.exports = {
+    getAll: () => {
+        return knex('user');
+    },
     create: user => 
-        // TODO
+        return knex('user').insert(user, 'id').then(ids => {
+            return ids[0];
+        });
     }
 }
