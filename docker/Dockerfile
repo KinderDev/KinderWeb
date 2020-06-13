@@ -27,12 +27,14 @@ WORKDIR /code
 RUN mkdir /code/logs
 
 # Install dependencies
-RUN npm cache clean
+RUN npm cache clean --force
 RUN npm install
 
 ENV GIT_COMMIT_SHA=${COMMIT}
 ENV GIT_COMMIT_BRANCH=${BRANCH}
 ENV GIT_SLUG=${REPO}
 
+# Run build
+
 # Default command to start the server
-CMD nodemon server
+CMD npm start
