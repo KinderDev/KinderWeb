@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+    image: postgresql
+    container_name: db
+    restart: unless-stopped
+    ports:
+        - "5432:5432"
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: web
+    links:
+      - db
+    ports:
+      - "5000:5000"
