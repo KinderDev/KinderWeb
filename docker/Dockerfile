@@ -35,6 +35,7 @@ ENV GIT_COMMIT_BRANCH=${BRANCH}
 ENV GIT_SLUG=${REPO}
 
 # Run build
+RUN npm install -g nodemon
 
 # Default command to start the server
-CMD npm start
+CMD ["nodemon", "server"]

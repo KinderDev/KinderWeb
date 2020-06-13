@@ -5,9 +5,11 @@ services:
     container_name: db
     restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: kinderweb
+      POSTGRES_DB: kinder_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-        - "5432:5432"
+      - "5432:5432"
   web:
     build:
       context: .
@@ -15,5 +17,7 @@ services:
     container_name: web
     links:
       - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/kinder_db
     ports:
       - "5000:5000"
