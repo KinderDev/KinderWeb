@@ -21,5 +21,6 @@ jobs:
         echo "Running build..."
         docker build ./docker -t kinderweb_web
         echo "Pushing image..."
+        docker tag kinderweb_web:latest lightning53/kinderweb:web
         docker push lightning53/kinderweb:web
         echo "Done!"
