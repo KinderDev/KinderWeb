@@ -4,6 +4,9 @@ module.exports = {
     getAll: () => {
         return knex('profile');
     },
+    getOneById: id => {
+        return knex('profile').where('profile.id', id).first();
+    },
     create: profile => {
         return knex('profile').insert(profile, 'id').then(ids => {
             return ids[0];
