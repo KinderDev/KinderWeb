@@ -10,13 +10,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
     - name: build
+      env:
+        DOCKER_HUB: ${{ secrets.DOCKER_HUB }}
+        DOCKER_HUB_KEY: ${{ secrets.DOCKER_HUB_KEY }}
       run: |
         ls -l
-        echo "Initializing Docker"
+        echo "Docker login"
+        docker login -u $DOCKER_HUB - p $DOCKER_HUB_KEY
         echo "Running build..."
-        docker build . -t kinderweb_web-latest
+        docker build ./docker -t kinderweb_web
         echo "Pushing image..."
-        docker push kinderweb_web-latest
+        docker push $DOCKER_HUB - p /kinderweb:web
         echo "Done!"
